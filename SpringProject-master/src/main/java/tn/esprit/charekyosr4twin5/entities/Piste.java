@@ -35,5 +35,7 @@ public class Piste implements Serializable {
     private Color color;
 
     @ManyToMany(mappedBy = "pistes")
+
+
     Set<Skieur> skieurs;
 }

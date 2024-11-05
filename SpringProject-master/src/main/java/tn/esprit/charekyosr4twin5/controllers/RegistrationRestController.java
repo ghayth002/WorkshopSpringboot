@@ -38,4 +38,16 @@ public class RegistrationRestController {
     public void deleteRegistration(@PathVariable Long numRegistration) {
         registrationService.removeRegistration(numRegistration);
     }
+    @PostMapping("/assign/{idSkier}")
+    public Registration assignRegistrationToSkier(
+            @RequestBody Registration registration,
+            @PathVariable Long idSkier) {
+        return registrationService.addRegistrationAndAssignToSkier(registration, idSkier);
+    }
+    @PostMapping("/assignCourse/{numCourse}")
+    public Registration assignRegistrationToCourse(
+            @RequestBody Registration registration,
+            @PathVariable Long numCourse) {
+        return registrationService.RegistrationAndAssignToCourse(registration, numCourse);
+    }
 }

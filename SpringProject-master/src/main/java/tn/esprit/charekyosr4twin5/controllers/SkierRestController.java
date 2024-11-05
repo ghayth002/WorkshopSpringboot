@@ -3,6 +3,7 @@ package tn.esprit.charekyosr4twin5.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.charekyosr4twin5.Services.SkierServicesimpl;
+import tn.esprit.charekyosr4twin5.entities.Color;
 import tn.esprit.charekyosr4twin5.entities.Skieur;
 
 import java.time.LocalDate;
@@ -38,5 +39,10 @@ private final SkierServicesimpl skierServices;
     @GetMapping("/getByBirthDate/{birthDate}")
     public List<Skieur> getByBirthDate(@PathVariable LocalDate birthDate){
         return skierServices.findByBirthDate(birthDate);
+    }
+    @PostMapping("/assign/{name}/{color}")
+    public Skieur assignSkierToPiste(@PathVariable String name, @PathVariable Color color) {
+        Skieur assignedSkier = skierServices.assignSkierToPiste(name, color);
+        return assignedSkier;
     }
 }

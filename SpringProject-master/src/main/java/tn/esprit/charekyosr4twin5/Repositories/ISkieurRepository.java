@@ -12,5 +12,6 @@ import java.util.List;
 public interface ISkieurRepository extends CrudRepository <Skieur, Long> {
     @Query("SELECT s FROM Skieur s WHERE s.birthDate = :birthDate")
     List<Skieur> findByBirthDate(@Param("birthDate") LocalDate birthDate);
+    Skieur findByName(String name);
 
 }

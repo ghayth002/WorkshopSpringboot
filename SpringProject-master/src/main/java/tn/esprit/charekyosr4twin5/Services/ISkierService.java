@@ -1,5 +1,6 @@
 package tn.esprit.charekyosr4twin5.Services;
 
+import tn.esprit.charekyosr4twin5.entities.Color;
 import tn.esprit.charekyosr4twin5.entities.Skieur;
 
 import java.time.LocalDate;
@@ -13,4 +14,7 @@ public interface ISkierService {
  List<Skieur> retriveAll();
  void remouveSkier(Long numSkier);
     List<Skieur> findByBirthDate(LocalDate birthDate);
+ List<Skieur> searchByFirstAndOrLastName(String Name);
+ Skieur assignSkierToPiste(String name, Color color);
+
 }

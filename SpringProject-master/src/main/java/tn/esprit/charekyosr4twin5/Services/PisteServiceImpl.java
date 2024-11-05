@@ -3,6 +3,7 @@ package tn.esprit.charekyosr4twin5.Services;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.charekyosr4twin5.Repositories.ISkieurRepository;
+import tn.esprit.charekyosr4twin5.entities.Color;
 import tn.esprit.charekyosr4twin5.entities.Piste;
 import tn.esprit.charekyosr4twin5.Repositories.IPisteRepository;
 import tn.esprit.charekyosr4twin5.entities.Skieur;
@@ -38,6 +39,11 @@ public class PisteServiceImpl implements IPisteService {
     @Override
     public List<Piste> getAllPistes() {
         return (List<Piste>) pisteRepository.findAll();
+    }
+
+    @Override
+    public List<Piste> getPistesByColor(Color color) {
+        return pisteRepository.findByColor(color);
     }
 
     @Override

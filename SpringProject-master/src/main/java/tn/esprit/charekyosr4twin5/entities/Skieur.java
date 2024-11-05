@@ -1,4 +1,5 @@
 package tn.esprit.charekyosr4twin5.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 @Table
+
 public class Skieur implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +30,7 @@ public class Skieur implements Serializable {
 
     private LocalDate birthDate;
     private String city;
+
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     Subscription subscription;
 

@@ -1,5 +1,6 @@
 package tn.esprit.charekyosr4twin5.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -25,9 +26,9 @@ public class Registration implements Serializable {
 
     private Long numRegistraion ;
     private int numWeek ;
+
     @ManyToOne
     Skieur skieur;
-
     @ManyToOne
     Course course;
 
