@@ -123,6 +123,11 @@ public class SkierServicesimpl implements ISkierService {
         return savedSkier;
     }
 
+    @Override
+    public List<Skieur> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription) {
+        return skieurRepository.findBySubscription_TypeSub(typeSubscription);
+    }
+
 
 }
 

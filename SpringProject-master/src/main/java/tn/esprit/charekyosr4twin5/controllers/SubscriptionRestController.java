@@ -4,8 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.charekyosr4twin5.entities.Subscription;
 import tn.esprit.charekyosr4twin5.Services.SubscriptionServiceImpl;
+import tn.esprit.charekyosr4twin5.entities.TypeSubscription;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequiredArgsConstructor
@@ -37,5 +39,9 @@ public class SubscriptionRestController {
     @DeleteMapping("/delete/{numSubscription}")
     public void deleteSubscription(@PathVariable Long numSubscription) {
         subscriptionService.removeSubscription(numSubscription);
+    }
+    @GetMapping("/all/{typeSub}")
+    public Set<Subscription> getSubscriptionsByType(@PathVariable("typeSub") TypeSubscription typeSubscription){
+        return subscriptionService.getSubscriptionByType(typeSubscription);
     }
 }

@@ -2,6 +2,7 @@ package tn.esprit.charekyosr4twin5.Services;
 
 import tn.esprit.charekyosr4twin5.entities.Color;
 import tn.esprit.charekyosr4twin5.entities.Skieur;
+import tn.esprit.charekyosr4twin5.entities.TypeSubscription;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -17,4 +18,6 @@ public interface ISkierService {
  List<Skieur> searchByFirstAndOrLastName(String Name);
  Skieur assignSkierToPiste(String name, Color color);
  Skieur addSkierAndAssignToCourse(Skieur skier, Long numCourse);
+ List<Skieur> retrieveSkiersBySubscriptionType(TypeSubscription typeSubscription);
+
 }
