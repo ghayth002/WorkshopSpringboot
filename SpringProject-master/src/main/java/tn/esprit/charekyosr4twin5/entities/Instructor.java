@@ -12,6 +12,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,13 +24,10 @@ import java.util.Set;
 public class Instructor implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private Long numInstructor ;
-    private LocalDate dateOfHire ;
+    private Long numInstructor;
+    private LocalDate dateOfHire;
     private String name;
+
     @OneToMany
-    Set<Course> courses;
-
-
-
+    private Set<Course> courses = new HashSet<>();
 }

@@ -16,5 +16,5 @@ public interface ISkierService {
     List<Skieur> findByBirthDate(LocalDate birthDate);
  List<Skieur> searchByFirstAndOrLastName(String Name);
  Skieur assignSkierToPiste(String name, Color color);
-
+ Skieur addSkierAndAssignToCourse(Skieur skier, Long numCourse);
 }

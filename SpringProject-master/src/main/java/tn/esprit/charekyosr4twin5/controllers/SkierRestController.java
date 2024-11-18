@@ -45,4 +45,9 @@ private final SkierServicesimpl skierServices;
         Skieur assignedSkier = skierServices.assignSkierToPiste(name, color);
         return assignedSkier;
     }
+    @PostMapping("/addAndAssign/{numCourse}")
+    public Skieur addSkierAndAssignToCourse(@RequestBody Skieur skier,
+                                           @PathVariable("numCourse") Long numCourse){
+        return  skierServices.addSkierAndAssignToCourse(skier,numCourse);
+    }
 }

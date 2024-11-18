@@ -2,14 +2,17 @@ package tn.esprit.charekyosr4twin5.Services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import tn.esprit.charekyosr4twin5.Repositories.ICourseRepository;
 import tn.esprit.charekyosr4twin5.Repositories.IPisteRepository;
+import tn.esprit.charekyosr4twin5.Repositories.IRegistrationRepository;
 import tn.esprit.charekyosr4twin5.Repositories.ISkieurRepository;
-import tn.esprit.charekyosr4twin5.entities.Color;
-import tn.esprit.charekyosr4twin5.entities.Piste;
-import tn.esprit.charekyosr4twin5.entities.Skieur;
+import tn.esprit.charekyosr4twin5.entities.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +20,8 @@ public class SkierServicesimpl implements ISkierService {
 
     private final ISkieurRepository skieurRepository;
     private final IPisteRepository pisteRepository;
+    private final ICourseRepository courseRepository;
+    private final IRegistrationRepository registrationRepository;
 
     @Override
     public Skieur addSkier(Skieur skieur) {
@@ -89,7 +94,35 @@ public class SkierServicesimpl implements ISkierService {
         // Return the updated Skieur entity
         return skieur;
     }
+    @Override
+    public Skieur addSkierAndAssignToCourse(Skieur skier, Long numCourse) {
+        // Save the Skieur entity
+        Skieur savedSkier = skieurRepository.save(skier);
 
+        // Retrieve the Course entity by its ID
+        Optional<Course> courseOpt = courseRepository.findById(numCourse);
+        if (!courseOpt.isPresent()) {
+            throw new RuntimeException("Course not found");
+        }
+        Course course = courseOpt.get();
 
+        // Initialize the registrations set if it is null
+        Set<Registration> registrations = savedSkier.getRegistrations();
+        if (registrations == null) {
+            registrations = new HashSet<>();
+            savedSkier.setRegistrations(registrations);
+        }
+
+        // Assign the Skieur to the Course and save the Registration entities
+        for (Registration r : registrations) {
+            r.setSkieur(savedSkier);
+            r.setCourse(course);
+            registrationRepository.save(r);
+        }
+
+        return savedSkier;
     }
+
+
+}
 
